@@ -1,0 +1,137 @@
+
+:root {
+  --bg: #f2f2f2;
+  --timeline-grey: #bebebe;
+  --timeline-border: #d5d5d5;
+  --timeline-blue: #0000EE;
+  --shadow: rgba(0,0,0,.04);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  overflow: hidden;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #111;
+}
+button { font: inherit; }
+.app {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: var(--bg);
+}
+.title {
+  position: absolute;
+  top: 22px;
+  left: 32px;
+  font-size: 14px;
+  letter-spacing: .02em;
+  font-weight: 600;
+  z-index: 3;
+}
+.timeline {
+  position: absolute;
+  left: 58px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 5;
+}
+.timeline-btn {
+  width: 104px;
+  height: 34px;
+  border-radius: 18px;
+  border: 1px solid var(--timeline-border);
+  background: linear-gradient(#f7f7f7, #ececec);
+  color: var(--timeline-grey);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset;
+  cursor: pointer;
+}
+.timeline-btn:hover {
+  border-color: #c8c8c8;
+}
+.timeline-btn.visited,
+.timeline-btn.active {
+  color: var(--timeline-blue);
+}
+.timeline-btn.active {
+  border-color: #bfc7d6;
+  background: linear-gradient(#fcfcfc, #ececec);
+}
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: clamp(36px, 6vw, 94px);
+  padding-left: 210px;
+}
+.computer-wrap {
+  position: relative;
+  width: min(72vw, 1080px);
+  aspect-ratio: 1280 / 832;
+}
+.computer-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+.screen-window {
+  position: absolute;
+  left: 33%;
+  top: 16%;
+  width: 55.15%;
+  height: 49.52%;
+  overflow: hidden;
+  z-index: 2;
+  background: white;
+}
+.screen-window iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  background: white;
+  transform-origin: top left;
+}
+@media (max-width: 1100px) {
+  .timeline { left: 24px; gap: 14px; }
+  .timeline-btn { width: 90px; height: 31px; font-size: 15px; }
+  .stage { padding-left: 150px; padding-right: 28px; }
+}
+@media (max-width: 820px) {
+  body { overflow: auto; }
+  .app { min-height: 100vh; height: auto; padding-bottom: 20px; }
+  .title { left: 18px; top: 14px; }
+  .timeline {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 58px 16px 12px;
+    gap: 10px;
+  }
+  .stage {
+    position: static;
+    padding: 0 12px 20px;
+    justify-content: center;
+  }
+  .computer-wrap {
+    width: min(100%, 760px);
+  }
+}
