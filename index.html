@@ -399,40 +399,36 @@
         }
       }
 
-      /* The Begin button gently roams around the opening screen. */
-      .intro-begin {
-        left: 65%;
-        top: 55%;
-        animation: begin-roam 26s ease-in-out infinite alternate;
+      /* Static Begin button: original Figma placement, no motion. */
+      .intro-begin,
+      .intro-begin:hover,
+      .intro-begin:focus-visible {
+        left: 65% !important;
+        top: 55% !important;
+        transform: none !important;
+        translate: none !important;
+        animation: none !important;
+        animation-play-state: paused !important;
+      }
+
+      /* GitHub Pages-safe entry: the Begin link works without JavaScript. */
+      a.intro-begin {
+        position: absolute;
+        z-index: 9999;
+        pointer-events: auto;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        touch-action: manipulation;
+      }
+      body:has(#experience:target) #introPage {
+        display: none !important;
       }
       .intro-begin:hover,
       .intro-begin:focus-visible {
-        animation-play-state: paused;
-      }
-      @keyframes begin-roam {
-        0% {
-          translate: 0 0;
-        }
-        20% {
-          translate: -43vw -29vh;
-        }
-        40% {
-          translate: -15vw 19vh;
-        }
-        60% {
-          translate: 20vw -28vh;
-        }
-        80% {
-          translate: -36vw 24vh;
-        }
-        100% {
-          translate: 5vw -5vh;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .intro-begin {
-          animation: none !important;
-        }
+        animation-play-state: paused !important;
       }
     </style>
   </head>
@@ -444,10 +440,10 @@
     >
       <h1 class="intro-title">Web Evolution</h1>
       <div class="year-trail" id="yearTrail" aria-hidden="true"></div>
-      <button class="intro-begin" id="beginBtn" type="button">Begin</button>
+      <a class="intro-begin" id="beginBtn" href="#experience">Begin</a>
     </section>
 
-    <div class="app">
+    <div class="app" id="experience">
       <div class="title" id="yearTitle" aria-label="Current year"></div>
       <nav
         class="timeline"
@@ -578,6 +574,7 @@
       document
         .getElementById("beginBtn")
         .addEventListener("click", openExperience);
+      if (window.location.hash === "#experience") intro.hidden = true;
       updateYearTitle("1990");
 
       const eras = [
