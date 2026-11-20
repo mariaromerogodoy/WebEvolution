@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Web Evolution</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="title">WEB EVOLUTION</div>
+      <nav
+        class="timeline"
+        id="timeline"
+        aria-label="Web Evolution timeline"
+      ></nav>
+      <main class="stage">
+        <div class="computer-wrap" id="computerWrap">
+          <img
+            id="backdrop"
+            class="computer-backdrop"
+            src="backdrops/1990.jpg"
+            alt="Computer frame for the selected year"
+          />
+          <div class="screen-window" id="screenWindow">
+            <iframe
+              id="historicalFrame"
+              src="historical-pages.html"
+              title="Web Evolution historical page"
+            ></iframe>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
